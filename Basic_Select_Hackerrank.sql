@@ -1,4 +1,3 @@
-###Revising the Select Query-1
 /*
 Query all columns for all American cities in CITY with populations larger than 100,000. The CountryCode for America is USA.
 
@@ -16,8 +15,7 @@ Solution
 */
 SELECT * FROM CITY WHERE COUNTRYCODE = 'USA' AND POPULATION > 100000;
 
-###Revising the Select Query-2
-
+/*
 Query the names of all American cities in CITY with populations larger than 120,000. The CountryCode for America is USA.
 
 Input Format
@@ -31,10 +29,10 @@ COUNTRY CODE	VARCHAR2(3)
 DISTRICT	VARCHAR2(20)
 POPULATION	NUMBER
 Solution
-
+*/
 SELECT NAME FROM CITY WHERE COUNTRYCODE = 'USA' AND POPULATION > 120000;
-###Select All
 
+/*
 Query all columns for every row in the CITY table.
 
 Input Format
@@ -48,12 +46,10 @@ COUNTRY CODE	VARCHAR2(3)
 DISTRICT	VARCHAR2(20)
 POPULATION	NUMBER
 Solution
-
+*/
 SELECT * FROM CITY;
-###Select by ID
 
-Query all columns for a city in CITY with the ID 1661.
-
+/*Query all columns for a city in CITY with the ID 1661.
 Input Format
 
 The CITY table is described as follows:
@@ -64,12 +60,11 @@ NAME	VARCHAR2(17)
 COUNTRY CODE	VARCHAR2(3)
 DISTRICT	VARCHAR2(20)
 POPULATION	NUMBER
-Solution
+Solution*/
 
 SELECT * FROM CITY WHERE ID = 1661; 
-###Japanese Cities' Detail
 
-Query the details for all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
+/*Query the details for all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
 
 Input Format
 
@@ -81,10 +76,11 @@ NAME	VARCHAR2(17)
 COUNTRY CODE	VARCHAR2(3)
 DISTRICT	VARCHAR2(20)
 POPULATION	NUMBER
-Solution
+Solution*/
 
 SELECT * FROM CITY WHERE COUNTRYCODE = 'JPN';        
-###Japanese Cities' Name
+
+/*
 
 Query the the names of all the Japanese cities in CITY. The COUNTRYCODE for Japan is JPN.
 
@@ -98,11 +94,11 @@ NAME	VARCHAR2(17)
 COUNTRY CODE	VARCHAR2(3)
 DISTRICT	VARCHAR2(20)
 POPULATION	NUMBER
-Solution
+Solution*/
 
 SELECT NAME FROM CITY WHERE COUNTRYCODE = 'JPN';        
-###Weather Observation Station 1
 
+/*
 Query a list of CITY and STATE from STATION.
 
 Input Format
@@ -115,12 +111,11 @@ CITY	VARCHAR2(21)
 STATE	VARCHAR2(2)
 LAT_N	NUMBER
 LONG_W	NUMBER
-Solution
+Solution*/
 
 SELECT CITY,STATE FROM STATION;       
-###Weather Observation Station 3
 
-Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
+/*Query a list of CITY names from STATION with even ID numbers only. You may print the results in any order, but must exclude duplicates from your answer.
 
 Input Format
 
@@ -135,11 +130,10 @@ LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 Solution
-
+*/
 SELECT DISTINCT CITY FROM STATION WHERE MOD(ID,2)=0 ORDER BY CITY ASC;       
-###Weather Observation Station 4
 
-Let NUM be the number of CITY entries in STATION, and NUMunique be the number of unique cities. Query the value of NUM−NUMunique from STATION.
+/*Let NUM be the number of CITY entries in STATION, and NUMunique be the number of unique cities. Query the value of NUM−NUMunique from STATION.
 
 In other words, query the number of non-unique CITY names in STATION by subtracting the number of unique CITY entries in the table from the total number of CITY entries in the table.
 
@@ -156,11 +150,11 @@ LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 Solution
-
+*/
 SELECT COUNT(CITY) - COUNT(DISTINCT CITY) FROM STATION;       
-###Weather Observation Station 5
 
-Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
+
+/*Query the two cities in STATION with the shortest and longest CITY names, as well as their respective lengths (i.e.: number of characters in the name). If there is more than one smallest or largest city, choose the one that comes first when ordered alphabetically.
 
 Input Format
 
@@ -189,12 +183,12 @@ Explanation
 When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WXY, with the respective lengths 3,3,4,3,3,4, and 33. The longest-named city is obviously PQRS, but there are 33 options for shortest-named city; we choose ABC, because it comes first alphabetically.
 
 Solution
+*/
+select city, length(city) from station order by length(city) DESC,city ASC limit 1;
+select city, length(city) from station order by length(city) asc ,city asc limit 1;      
 
-select city, length(city) from station order by length(city) DESC,city ASC fetch first row only;
-select city, length(city) from station order by length(city) asc ,city asc fetch first row only;      
-###Weather Observation Station 6
 
-Query the list of CITY names starting with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+/*Query the list of CITY names starting with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 
 Input Format
 
@@ -208,13 +202,12 @@ LAT_N	NUMBER
 LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
-Solution
+Solution*/
 
 SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE 'A%' OR CITY LIKE 'E%' OR CITY LIKE 'I%' OR CITY LIKE 'O%' 
 OR CITY LIKE 'U%' ORDER BY CITY ASC;       
-###Weather Observation Station 7
 
-Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
+/*Query the list of CITY names ending with vowels (a, e, i, o, u) from STATION. Your result cannot contain duplicates.
 
 Input Format
 
@@ -229,12 +222,11 @@ LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 Solution
-
+*/
 SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' 
 OR CITY LIKE '%u';       
-###Weather Observation Station 8
 
-Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
+/*Query the list of CITY names from STATION which have vowels (i.e., a, e, i, o, and u) as both their first and last characters. Your result cannot contain duplicates.
 
 Input Format
 
@@ -248,11 +240,11 @@ LAT_N	NUMBER
 LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
-Solution
+Solution*/
 
 SELECT DISTINCT CITY FROM STATION WHERE (CITY LIKE 'A%' OR CITY LIKE 'E%' OR CITY LIKE 'I%' OR CITY LIKE 'O%' OR CITY LIKE 'U%') AND (CITY LIKE '%a' OR CITY LIKE '%e' OR CITY LIKE '%i' OR CITY LIKE '%o' OR CITY LIKE '%u') order by city;      
-###Weather Observation Station 9
 
+/*
 Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
 
 Input Format
@@ -267,11 +259,12 @@ LAT_N	NUMBER
 LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
-Solution
+Solution*/
 
 SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
-('a','e','i','o','u');     
-###Weather Observation Station 10
+('a','e','i','o','u'); 
+
+/*###Weather Observation Station 10
 
 Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
 
@@ -287,12 +280,11 @@ LAT_N	NUMBER
 LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
-Solution
+Solution*/
 
 SELECT DISTINCT CITY FROM STATION WHERE UPPER(SUBSTR(CITY, LENGTH(CITY), 1)) NOT IN ('A','E','I','O','U') AND LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
-###Weather Observation Station 11
 
-Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+/*Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
 
 Input Format
 
@@ -307,11 +299,10 @@ LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 Solution
-
+*/
 SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') OR LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');   
-###Weather Observation Station 12
 
-Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
+/*Query the list of CITY names from STATION that do not start with vowels and do not end with vowels. Your result cannot contain duplicates.
 
 Input Format
 
@@ -325,12 +316,12 @@ LAT_N	NUMBER
 LONG_W	NUMBER
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
-Solution
+Solution*/
 
 SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') AND LOWER(SUBSTR(CITY,LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
-###Higher Than 75 marks
 
-Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
+
+/*Query the Name of any student in STUDENTS who scored higher than 75 Marks. Order your output by the last three characters of each name. If two or more students both have names ending in the same last three characters (i.e.: Bobby, Robby, etc.), secondary sort them by ascending ID.
 
 Input Format
 
@@ -357,12 +348,12 @@ Explanation
 
 Only Ashley, Julia, and Belvet have Marks > 75. If you look at the last three characters of each of their names, there are no duplicates and 'ley' < 'lia' < 'vet'.
 
-Solution
+Solution*/
 
 SELECT NAME FROM STUDENTS WHERE MARKS > 75 ORDER BY SUBSTR(NAME, LENGTH(NAME)-2, 3), ID;    
-###Employee Names
 
-Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
+
+/*Write a query that prints a list of employee names (i.e.: the name attribute) from the Employee table in alphabetical order.
 
 Input Format
 
@@ -391,11 +382,12 @@ employee_id	name	marks	salary
 Sample Output
 
 Angela Bonnie Frank Joe Kimberly Lisa Michael Patrick Rose Todd
-
+*/
 Solution
 
 SELECT NAME FROM EMPLOYEE ORDER BY NAME;   
-###Employee Salaries
+
+/*###Employee Salaries
 
 Write a query that prints a list of employee names (i.e.: the name attribute) for employees in Employee having a salary greater than $2000 per month who have been employees for less than 10 months. Sort your result by ascending employee_id.
 
@@ -432,5 +424,5 @@ Explanation
 Angela has been an employee for 1 month and earns $3443 per month. Michael has been an employee for 6 months and earns $2017 per month. Todd has been an employee for 5 months and earns $3396 per month. Joe has been an employee for 9 months and earns $3573 per month. We order our output by ascending employee_id.
 
 Solution
-
+*/
 SELECT NAME FROM EMPLOYEE WHERE SALARY > 2000  AND MONTHS < 10 ORDER BY EMPLOYEE_ID;  
